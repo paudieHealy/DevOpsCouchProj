@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Worker Invoices</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style>
+	body{
+	color: #666;
+	font: 1.2em/1.4em 'Myriad Pro', Helvetica, Arial, sans-serif;
+	text-align: left;
+	margin-left:auto;
+	margin-right:auto;
+	width:500px;
+	border:2px solid #000;
+	padding:10px;
+	background-color: #D3D3D3;
+	padding-left: 60px;
+}
+
+headOfPage{
+	width: 50%;
+	height: 20%;
+	margin-left:auto;
+	margin-right:auto;
+	border: 2px solid #000;
+	background-color: #FC0;
+}
+
+addInvoice{
+	width: 50%;
+	height: 20%;
+	margin: 0 auto;
+	border: 2px solid #000;
+	background-color: #FC0;
+	text-align:left;
+}
+</style>
+</head>
+<body>
+<div id="headOfPage">
+	<h2 style = "color:red; text-align:center;">Co-Op Construction <br>Worker Invoices</h2>
+</div>
+
+<div id="addInvoice">
+<h3>Add Invoice</h3>
+<form method="post" action="/invoice/add">
+	<input type="text" name="worker" placeholder="Add worker"><br><br>
+	<input type="text" name="labour" placeholder="Add labour cost"><br><br>
+	<input type="text" name="materials" placeholder="Add materials cost"><br><br>
+	<input type="text" name="total" placeholder="Add total"><br><br>
+	<input type="text" name="completed" placeholder="Add date completed"><br><br>
+	<input type="submit" value="submit">
+</form>	
+</div>
+
+<div id="updateInvoice">
+	<h3>Update Invoices</h3>
+<form method="post" action="/invoice/update">
+	<input type="text" name="_id" placeholder="Enter id"><br><br>
+	<input type="text" name="_rev" placeholder="Enter rev"><br><br>
+	<input type="text" name="worker" placeholder="Edit worker"><br><br>
+	<input type="text" name="labour" placeholder="Edit hrs labour"><br><br>
+	<input type="text" name="materials" placeholder="Edit materials cost"><br><br>
+	<input type="text" name="total" placeholder="Edit total"><br><br>
+	<input type="text" name="completed" placeholder="Edit date completed"><br><br>
+	<input type="submit" value="update">			
+</form>
+</div>
+
+<div id="deleteInvoice">
+<h3>List/Delete Invoices</h3>
+<ul>
+<% invoices.forEach(function(invoice){ %>
+	<li>
+		<h5>Worker name: <%= invoice.value.worker %></h5>
+		<h5>Labour total: <%= invoice.value.labour %></h5>
+		<h5>Materials total: <%= invoice.value.materials %></h5>
+		<h5>Total: <%= invoice.value.total %></h5>
+		<h5>Date completed: <%= invoice.value.completed %></h5>
+		<form method="post" action="/invoice/<%= invoice.key %>">
+		<input type="hidden" value="<%= invoice.value.rev %>" name="rev">	
+		<input type="submit" value="Delete when paid">	
+		</form>
+
+	</li>
+<% }); %>
+</ul>
+</div>
+
+
+</body>
+</html>
+

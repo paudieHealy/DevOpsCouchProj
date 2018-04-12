@@ -1,0 +1,22 @@
+body{
+	color: #666;
+	font: 1.2em/1.4em 'Myriad Pro', Helvetica, Arial, sans-serif;
+	text-align: left;
+	margin: 0px;
+}
+
+headOfPage{
+	width: 50%;
+	height: 20%;
+	margin: 0 auto;
+	border: 2px solid #000;
+	background-color: #FC0;
+}
+
+addInvoice{
+	width: 50%;
+	height: 20%;
+	margin: 0 auto;
+	border: 2px solid #000;
+	background-color: #FC0;
+}
